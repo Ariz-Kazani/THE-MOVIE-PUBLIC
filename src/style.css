@@ -1,0 +1,44 @@
+@import "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css";
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  color: rgb(255, 255, 255);
+  font-family: 'Kanit', sans-serif;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-text-size-adjust: 100%;
+}
+
+input,
+input:before,
+input:after {
+  box-sizing: border-box;
+  -webkit-user-select: initial;
+  -khtml-user-select: initial;
+  -moz-user-select: initial;
+  -ms-user-select: initial;
+  user-select: initial;
+}
+
+body {
+  background-color: #121212;
+}
+
+button {
+  background-color: rgb(10, 10, 10);
+  border-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+input {
+  background-color: rgb(10, 10, 10);
+  border-color: rgb(255, 255, 255);
+  border-radius: 10px;
+}
