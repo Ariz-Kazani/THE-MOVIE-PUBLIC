@@ -56,4 +56,4 @@ There is no license, so feel free to take my code and build on it!
 
 ## Credits
 
-Code was Written by Ariz Kazani. Special thanks to Omar Qayum for the original idea for this project!
+Code written by Ariz Kazani. Special thanks to Omar Qayum for the original project idea!
