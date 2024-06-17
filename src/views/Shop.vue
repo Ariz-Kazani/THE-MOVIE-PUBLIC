@@ -5,8 +5,8 @@ import FooterVue from '../components/Footer.vue'
 </script>
 
 <template>
-	<BodyVue />
-	<FooterVue />
+  <BodyVue />
+  <FooterVue />
 </template>
 
 <style scoped></style>

@@ -1,7 +1,5 @@
 <script setup>
-
 const emits = defineEmits(['clickedLogo']);
-
 </script>
 
 <template>

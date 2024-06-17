@@ -3,22 +3,27 @@ import { ref } from 'vue';
 import axios from 'axios';
 import { useUserCart, useUserMovies } from '../store/store';
 
+// Store
 const props = defineProps(['id']);
 const emits = defineEmits(['toggleModal']);
+
+// Variables
 const genres = ref("");
 const movieData = ref();
 const cart = ref(useUserCart());
 const myMovies = ref(useUserMovies().myMovies);
 
+// Get movie data
 const TMDB_API_KEY = ref(import.meta.env.VITE_TMDB_API_KEY);
 
-
+// Get movie data from TMDB API
 movieData.value = await axios.get(`https://api.themoviedb.org/3/movie/${props.id}`, {
   params: {
     api_key: TMDB_API_KEY.value,
   }
 });
 
+// Get genres
 function getGenras() {
   for (let genre of movieData.value.data.genres) {
     genres.value += genre.name + ", ";
@@ -28,6 +33,8 @@ function getGenras() {
 
 getGenras()
 
+
+// Add and remove from cart
 function addToStore() {
   cart.value.cart.set(movieData.value.data.id, {
     title: movieData.value.data.title,
@@ -39,7 +46,6 @@ function addToStore() {
 function removeFromStore() {
   cart.value.cart.delete(movieData.value.data.id);
 }
-
 </script>
 
 <template>

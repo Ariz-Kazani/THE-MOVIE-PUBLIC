@@ -13,6 +13,7 @@ const watchingMovieLink = ref("")
 
 const TMDB_API_KEY = ref(import.meta.env.VITE_TMDB_API_KEY);
 
+// Get movies from TMDB API
 async function getMovies() {
   for (let movie of userMovies) {
     let movieData = await axios.get(`https://api.themoviedb.org/3/movie/${movie}`, {
@@ -30,8 +31,10 @@ async function getMovies() {
     movies.value.push(movieData.data)
   }
 }
+// Get movies
 getMovies()
 
+// function to watch movie
 function watchMovie(id) {
   watchingMovieLink.value = 'https://www.youtube.com/embed/' + id + '?autoplay=1'
   isWatchingMovie.value = true;
@@ -41,7 +44,6 @@ function watchMovie(id) {
     behavior: 'smooth'
   });
 }
-
 </script>
 
 <template>

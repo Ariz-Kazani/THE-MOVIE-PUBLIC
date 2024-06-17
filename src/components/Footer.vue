@@ -4,15 +4,18 @@ import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { useUserToken } from '../store/store';
 import { ref } from "vue";
 
+// Store
 const userToken = useUserToken();
 const signedIn = ref(false);
 
+// Log user out
 async function logOut() {
   window.scroll(0, 0);
   signedIn.value = false;
   await signOut(auth);
 }
 
+// Check if user is already logged in
 onAuthStateChanged(auth, (user) => {
   if (!user) {
     userToken.token.userToken = "";
@@ -21,6 +24,7 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
+// Scroll to top
 function toTop() {
   window.scroll({
     top: 0,

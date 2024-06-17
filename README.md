@@ -44,7 +44,7 @@ The Movie application offers a range of features to enhance your movie-watching 
 
 2. **Discover New Movies**: Explore a curated collection of popular and trending movies. Discover hidden gems and stay up-to-date with the latest releases.
 
-3. **My Movies**: Keep track of movies you "purchase", (all movies are free because you arn't actually able to purchase them)
+3. **My Movies**: Keep track of movies you "purchase", (all movies are free because you aren't actually able to purchase them)
 
 4. **Watch Movies**: Watch purchased movies.
 

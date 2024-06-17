@@ -7,10 +7,12 @@ import { doc, getDoc } from "firebase/firestore";
 import { useUserToken, useUserMovies, useUserCart } from '../store/store';
 import Header from '../components/Header.vue'
 
+// Store
 const userToken = useUserToken();
 const userMovies = useUserMovies()
 const userCart = useUserCart();
 
+// Auth
 const googleAuth = new GoogleAuthProvider();
 const otherError = ref("");
 const emailError = ref("");
@@ -18,6 +20,7 @@ const password = ref("");
 const email = ref("");
 const errWarn = ref();
 
+// Check if user is already logged in
 onAuthStateChanged(auth, (user) => {
   if (user) {
     router.push('/shop')
@@ -28,7 +31,7 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-
+// log user in with google
 function loginWGoogle() {
   signInWithPopup(auth, googleAuth)
     .then((userCredential) => {
@@ -48,6 +51,7 @@ function loginWGoogle() {
     });
 }
 
+// log user in with email
 function eMailLogin() {
   if (email.value.length < 3 || password.value.length < 6) {
     emailError.value = "Invalid Username and/or Password";
@@ -75,6 +79,7 @@ function eMailLogin() {
   }
 }
 
+// get user owned movies
 async function getOwnedMovies(id) {
   const docRef = doc(firestore, "movies", id);
   const docSnap = await getDoc(docRef);
@@ -85,6 +90,7 @@ async function getOwnedMovies(id) {
   }
 }
 
+// other login options
 function loginWApple() {
   otherError.value = "Apple signup currently unavailable, please use a different one"
 }
@@ -232,7 +238,6 @@ function loginWFacebook() {
   width: 30px;
   height: 30px;
   margin: 5px;
-  /* background-color: white; */
 }
 
 #sub-em {
@@ -240,7 +245,6 @@ function loginWFacebook() {
   margin-top: 4%;
   height: 40px;
   width: 90%;
-
 }
 
 .aa-con h2 {
@@ -248,7 +252,6 @@ function loginWFacebook() {
 }
 
 .aa-con .email-con {
-  /* background-color: rgba(35, 35, 35, 0.5); */
   backdrop-filter: blur(10px);
   background-color: rgba(0, 0, 0, 0.19);
   width: 250px;

@@ -8,11 +8,12 @@ import Header from '../components/Header.vue'
 import { auth } from "../firebase/index.js";
 import { onAuthStateChanged } from 'firebase/auth';
 
+// Store
 const userToken = useUserToken();
 const userCart = ref(useUserCart());
 const TMDB_API_KEY = ref(import.meta.env.VITE_TMDB_API_KEY);
 
-
+// Check if user is logged in
 onAuthStateChanged(auth, (user) => {
   if (!user) {
     userToken.token.userToken = "";
@@ -20,6 +21,7 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
+// Variables
 const movies = ref();
 const showModal = ref(false);
 const selId = ref(0);
@@ -28,6 +30,7 @@ let changePage = false;
 let searchInput = "";
 let search = "";
 
+// Open and close modal
 function openModal(id) {
   selId.value = id;
   showModal.value = true;
@@ -37,6 +40,7 @@ function closeModal() {
   showModal.value = false;
 }
 
+// Get movies
 async function getHome(page = 1) {
   movies.value = null
   search = "";
@@ -54,6 +58,7 @@ async function getHome(page = 1) {
 
 getHome()
 
+// Get search results
 async function getSearch(page = 1) {
   while (searchInput.charAt(0) == " ") {
     searchInput = searchInput.substring(1)
@@ -80,6 +85,7 @@ async function getSearch(page = 1) {
   movies.value = data.data;
 };
 
+// pagination
 async function updatePage(uPage) {
   changePage = true;
   isHome ? getHome(uPage) : getSearch(uPage);

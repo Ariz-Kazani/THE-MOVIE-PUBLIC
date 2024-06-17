@@ -5,22 +5,25 @@ import router from '../router/index.js'
 import { firestore } from "../firebase/index";
 import { doc, setDoc } from "firebase/firestore";
 
-
+// Store
 const cart = ref(useUserCart());
 const userToken = useUserToken();
 const userMovies = useUserMovies();
+
+// variables to get movies selected by user
 const emits = defineEmits(['toggleModal']);
 const posters = ref([]);
 let movieIDS = []
 const postI = ref([-1, 0, 1]);
 const isBuy = ref(true)
 
+// Get movies from cart
 for (let [key, val] of cart.value.cart) {
   posters.value.push(val.poster);
   movieIDS.push(key)
-  
 }
 
+// function that handles purchase of movies
 async function buy() {
   isBuy.value = false;
   userMovies.myMovies = userMovies.myMovies.concat(movieIDS)
@@ -31,6 +34,7 @@ async function buy() {
   router.push('shop');
 }
 
+// function to change poster
 function nextPoster() {
   for (let i = 0; i < postI.value.length; i++) {
     if (postI.value[i] <= 0) {

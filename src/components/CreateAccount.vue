@@ -6,10 +6,12 @@ import Header from '../components/Header.vue'
 import { signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { useUserToken, useUserMovies, useUserCart } from '../store/store';
 
+// Store
 const userToken = useUserToken();
 const userMovies = useUserMovies();
 const userCart = useUserCart();
 
+// Auth
 const googleAuth = new GoogleAuthProvider();
 const email = ref("");
 const password = ref("");
@@ -21,6 +23,7 @@ const eError = ref({
 })
 const otherError = ref("");
 
+// Check if user is already logged in
 onAuthStateChanged(auth, (user) => {
   if (user) {
     router.push('/shop')
@@ -31,7 +34,7 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-
+// log user in with google
 function loginWGoogle() {
   signInWithPopup(auth, googleAuth)
     .then((userCredential) => {
@@ -50,6 +53,7 @@ function loginWGoogle() {
     });
 }
 
+// create user with email
 async function eMailSignin() {
   const data = () => {
     createUserWithEmailAndPassword(auth, email.value, password2.value)
@@ -84,6 +88,7 @@ async function eMailSignin() {
 
 }
 
+// get user owned movies
 async function getOwnedMovies(id) {
   const docRef = doc(firestore, "movies", id);
   const docSnap = await getDoc(docRef);
@@ -94,6 +99,7 @@ async function getOwnedMovies(id) {
   }
 }
 
+// other login options
 function loginWApple() {
   otherError.value = "Apple signin currently unavailable, please use a different one"
 }

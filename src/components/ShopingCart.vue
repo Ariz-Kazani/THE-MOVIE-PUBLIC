@@ -7,14 +7,17 @@ import { auth } from "../firebase/index.js";
 import { onAuthStateChanged } from 'firebase/auth';
 import PurchaseModal from "../components/PurchaseModal.vue";
 
+// Store
 const cart = ref(useUserCart());
 const userToken = useUserToken();
 const showModal = ref(false);
 
+// Check if cart is empty
 if (cart.value.cart.size == 0) {
   router.push('shop');
 }
 
+// Check if user is logged in
 onAuthStateChanged(auth, (user) => {
   if (!user) {
     userToken.token.userToken = "";
@@ -22,6 +25,7 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
+// Remove movie from cart
 function removeFromStore(key) {
   cart.value.cart.delete(key);
   if (cart.value.cart.size == 0) {
@@ -29,6 +33,7 @@ function removeFromStore(key) {
   }
 }
 
+// Open and close modal
 function openModal() {
   showModal.value = true;
 }
